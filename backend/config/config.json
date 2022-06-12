@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:5000",
+  "website": "http://127.0.0.1",
+  "paybylink": {
+    "shopId": 11,
+    "hash": 11
+  },
+  "backgroundColor": "#161616",
+  "ip": "elomc.org",
+  "navbar": {
+    "textColor": "#aaa",
+    "textColorHover": "#fff",
+    "textWeight": "normal"
+  }
+}

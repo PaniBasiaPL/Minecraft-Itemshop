@@ -1,0 +1,25 @@
+.dragscroll {
+  /* border: 1px solid rgb(31, 40, 49); */
+  /* background-color: #283849; */
+  overflow: auto;
+}
+.dragscroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.dragscroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.vertical.dragscroll {
+  cursor: grab;
+  width: 270px;
+  height: 380px;
+  float: left;
+  padding: 10px;
+  border: 1px solid black;
+}
+.vertical.dragscroll:active {
+  cursor: grabbing;
+}

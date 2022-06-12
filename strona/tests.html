@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="assets/css/mainstyle.css" /> -->
+    <style>
+      ::-webkit-scrollbar {
+        width: 0.4vw;
+        height: 0.9vw;
+        background-color: #333;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #0275d8;
+        border-right-width: 0.3vw;
+        background-clip: padding-box;
+      }
+      ::-moz-selection {
+        background: rgba(25, 202, 254, 0.2);
+      }
+      ::selection {
+        background: rgba(25, 202, 254, 0.2);
+      }
+      .disable-select {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <style type="text/css">
+      body {
+        margin: 0;
+        background-color: black;
+      }
+      .move {
+        position: fixed;
+      }
+      .box2 {
+        background-color: black;
+      }
+      #sec1 {
+        height: 500px;
+      }
+      #sec2 {
+        height: 700px;
+      }
+      #sec3 {
+        height: 400px;
+      }
+      #sec4 {
+        height: 550px;
+      }
+      #sec5 {
+        height: 550px;
+      }
+    </style>
+    <div id="navigation">
+      <nav id="navbar" class="nav disable-select">
+        <div class="hb">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <a href="#home" class="navbar-nav-btn" id="high1">STRONA GŁÓWNA</a>
+        <a href="#" class="navbar-nav-btn" id="high2">SKLEP</a>
+        <a href="#help" class="navbar-nav-btn" id="high3">POMOC</a>
+        <a href="#ranking" class="navbar-nav-btn" id="high4">RANKING</a>
+        <a href="#plan" class="navbar-nav-btn" id="high5">PLAN EDYCJI</a>
+        <!-- <p class="navbar-nav-btn" id="high1">elo</p>
+        <p class="navbar-nav-btn" id="high2">elo</p>
+        <p class="navbar-nav-btn" id="high3">elo</p>
+        <p class="navbar-nav-btn" id="high4">elo</p> -->
+      </nav>
+    </div>
+    <section id="home" class="home">
+      <div class="spacer s1" id="sec1">
+        <div class="box2">
+          <p>One</p>
+        </div>
+      </div>
+    </section>
+    <section id="" class="">
+      <div class="spacer s1" id="sec2">
+        <div class="box2">
+          <p>Two</p>
+        </div>
+      </div>
+    </section>
+    <section id="help" class="heko">
+      <div class="spacer s1" id="sec3">
+        <div class="box2">
+          <p>Three</p>
+        </div>
+      </div>
+    </section>
+    <section id="ranking" class="ranking">
+      <div class="spacer s1" id="sec4">
+        <div class="box2">
+          <p>Four</p>
+        </div>
+      </div>
+    </section>
+    <section id="plan" class="plan">
+      <div class="spacer s1" id="sec5">
+        <div class="box2">
+          <p>Five</p>
+        </div>
+      </div>
+    </section>
+    <div class="spacer s2"></div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script>
+      var controller = new ScrollMagic.Controller();
+
+      new ScrollMagic.Scene({ triggerElement: "#sec1", duration: 500 })
+        .setClassToggle("#high1", "active") // add class toggle
+        .addTo(controller);
+      new ScrollMagic.Scene({ triggerElement: "#sec2", duration: 700 })
+        .setClassToggle("#high2", "active") // add class toggle
+        .addTo(controller);
+      new ScrollMagic.Scene({ triggerElement: "#sec3", duration: 400 })
+        .setClassToggle("#high3", "active") // add class toggle
+        .addTo(controller);
+      new ScrollMagic.Scene({ triggerElement: "#sec4", duration: 550 })
+        .setClassToggle("#high4", "active") // add class toggle
+        .addTo(controller);
+      new ScrollMagic.Scene({ triggerElement: "#sec5", duration: 550 })
+        .setClassToggle("#high5", "active") // add class toggle
+        .addTo(controller);
+      $(".hb").click(function () {
+        $(this)
+          .children()
+          .each(function () {
+            $(this).toggleClass("active");
+          });
+        $("#navbar")
+          .children()
+          .each(function () {
+            $(this).toggleClass("show");
+          });
+      });
+    </script>
+  </body>
+</html>

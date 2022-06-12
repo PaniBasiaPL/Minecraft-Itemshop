@@ -1,0 +1,122 @@
+.popupWindow {
+  position: fixed;
+  z-index: 100;
+  width: 80vw;
+  height: 90vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200%, -50%);
+  transition: transform 0.5s cubic-bezier(0.25, 1.07, 0.38, 1.15);
+}
+.popupWindow.active {
+  transform: translate(-50%, -50%);
+}
+.popup {
+  font-family: "Lato", sans-serif;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #161616;
+}
+.popup .closeBtn {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  outline: none;
+  border: none;
+  background-color: #ff11116c;
+  color: #fff;
+  font-size: 25px;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.4s ease;
+}
+.popup .closeBtn:hover {
+  background-color: #ff1111a1;
+}
+.popup .description {
+  position: relative;
+  left: 10%;
+  top: 10%;
+}
+.popup .description h2 {
+  color: #fff;
+}
+.popup .description h3 {
+  color: rgb(170, 170, 170);
+}
+.popup .description img {
+  position: absolute;
+  transform: translateY(10%);
+}
+.popup .buysec {
+  width: 50%;
+  position: relative;
+  left: 45%;
+}
+.popup .buysec h2 {
+  color: #fff;
+}
+.popup .buysec input[type="text"] {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 35px;
+  width: 50%;
+  padding: 0 10px 0 10px;
+  background-color: #222222;
+  color: #fff;
+  transition: 0.5s ease;
+}
+.popup .buysec input[type="text"]:focus {
+  background-color: #2c2c2c;
+}
+.popup .buysec .method input {
+  border: none;
+  outline: none;
+  color: #fff;
+  height: 35px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: #181818;
+  transition: 0.5s ease-in-out;
+}
+.popup .buysec .method input.active {
+  background-color: #0b86e5;
+}
+.popup .buysec .method input.wide {
+  width: 150px;
+}
+.popup .button {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 200px;
+}
+@media screen and (max-width: 1100px) {
+  .popup .buysec {
+    transform: translateY(40%);
+  }
+  .popup .description img {
+    display: none;
+  }
+  .popup .description h3 {
+    display: none;
+  }
+  .popup .buysec {
+    left: 10%;
+    top: 10%;
+  }
+  .popup .buysec .method input {
+    width: 100% !important;
+  }
+}

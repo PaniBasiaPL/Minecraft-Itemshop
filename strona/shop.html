@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="assets/css/mainstyle.css" />
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/button.css" />
+    <link rel="stylesheet" href="assets/css/img.css" />
+    <link rel="stylesheet" href="assets/css/popup.css" />
+    <style>
+      .items {
+        display: flex;
+        justify-content: center;
+      }
+      .shopItem {
+        position: relative;
+      }
+      .shopItem .overlay {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 5px;
+        /* opacity: 0;
+        transition: opacity 0.5s translate 0.5s ease; */
+      }
+      .shopItem .overlay .buy {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, transform 0.5s ease;
+      }
+      .shopItem:hover .overlay .buy {
+        transform: translateY(-20%);
+        opacity: 1;
+      }
+      .shopItem .overlay .buy button {
+        padding: 0 60px 0 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navigation">
+      <nav id="navbar" class="nav disable-select">
+        <div class="hb">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <a href="#home" class="navbar-nav-btn" id="high1">STRONA GŁÓWNA</a>
+        <a href="#" class="navbar-nav-btn" id="high2">SKLEP</a>
+        <a href="#help" class="navbar-nav-btn" id="high3">POMOC</a>
+        <a href="#ranking" class="navbar-nav-btn" id="high4">RANKING</a>
+        <a href="#plan" class="navbar-nav-btn" id="high5">PLAN EDYCJI</a>
+      </nav>
+    </div>
+    <div class="navcol"></div>
+    <div class="popupWindow">
+      <div class="popup">
+        <button class="closeBtn">&times;</button>
+        <div class="description">
+          <h2>Nazwa</h2>
+          <h3>Opis</h3>
+          <img src="img/pobrane.png" alt="Obraz" />
+        </div>
+        <form class="form">
+          <div class="buysec">
+            <h2>Nick na serwerze</h2>
+            <input
+              type="text"
+              name="nickname"
+              id="nickname"
+              placeholder="Nick"
+              required
+            />
+            <div class="method mt-3">
+              <h2>Metoda Płatności</h2>
+              <input type="button" class="active wide" value="PayPal/Przelew" />
+              <input type="button" value="PSC" />
+              <input type="button" value="SMS" />
+            </div>
+          </div>
+          <a>
+            <input type="submit" class="button" value="Kup" />
+            <!-- <h2>Kup</h2> -->
+          </a>
+        </form>
+        <!-- <button class="buy"><h2>Kup</h2></button> -->
+      </div>
+    </div>
+    <section class="shop" id="shop">
+      <wrapper>
+        <div class="container">
+          <div
+            class="row text-center d-flex justify-content-center items"
+          ></div>
+        </div>
+      </wrapper>
+    </section>
+    <script src="assets/js/lazysizes.min.js" async=""></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script>
+      fetch("http://127.0.0.1:5000/items/")
+        .then((response) => response.json())
+        .then((data) => {
+          for (const e of data) {
+            $(".items").append(`<div class="col-md-4 mt-5">
+              <div class="shopItem">
+                <img data-src="img/pobrane.png" class="lazyload" />
+                <div class="overlay">
+                  <div class="buy disable-select">
+                    <button
+                      class="itemBtn button"
+                      data-name="${e.name}"
+                      data-description="${e.description}"
+                      data-image="${e.image}"
+                      data-price="${e.price}"
+                      data-href="http://127.0.0.1:5000/pay/${e.id}"
+                      data-id=${e.id}
+                    >
+                      Kup
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <h2 class="mt-2 text-primary">${e.name}</h2>
+            </div>`);
+          }
+        })
+        .then((data) => {
+          $(".itemBtn").click(function () {
+            // $(this).children("a").attr("href");
+            openPopup(
+              $(this).attr("data-name"),
+              $(this).attr("data-description"),
+              $(this).attr("data-image"),
+              $(this).attr("data-price"),
+              $(this).attr("data-href"),
+              $(this).attr("data-id")
+            );
+          });
+        });
+
+      $(".hb").click(function () {
+        $(this)
+          .children()
+          .each(function () {
+            $(this).toggleClass("active");
+          });
+        $("#navbar")
+          .children()
+          .each(function () {
+            $(this).toggleClass("show");
+          });
+      });
+      $(".closeBtn").click(function () {
+        $(".popupWindow").removeClass("active");
+      });
+      $(".popup .buysec .method input").each(function (f) {
+        $(this).click(function () {
+          $(".popup .buysec .method input.active").removeClass("active");
+          $(this).addClass("active");
+        });
+      });
+      function openPopup(name, description, image, price, href, id) {
+        $(".popup .description h2").text(name);
+        $(".popup .description h3").text(description);
+        $(".popup .description img").attr("src", image);
+        $(".popup a").attr("href", href);
+        $(".popupWindow").addClass("active");
+        $(".form").attr(
+          "action",
+          "http://127.0.0.1:5000/pay/" + id + "?nickname=" + $("#nick").val()
+        );
+        $(".popup a input.button").attr("value", "Kup | " + price);
+      }
+    </script>
+  </body>
+</html>
